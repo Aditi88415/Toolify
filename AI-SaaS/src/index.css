@@ -1,0 +1,316 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h2 {
+  color: #1dbf73; /* Fiverr green */
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #1dbf73;
+}
+
+/* Home Page */
+.home {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #e6f9f0, #fff);
+}
+
+.home h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.home p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.home form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.home input {
+  width: 350px;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+.home button {
+  background: #1dbf73;
+  border: none;
+  padding: 12px 25px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.home button:hover {
+  background: #17a563;
+}
+
+/* Tools Page */
+.tools {
+  padding: 50px 40px;
+}
+
+.tools h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  color: #222;
+}
+
+.tool-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* Tool Card */
+.tool-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.tool-card p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.tool-card a {
+  color: #1dbf73;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Footer */
+footer {
+  background: #fff;
+  padding: 20px 40px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
+}
+/* Tool Details */
+.tool-details {
+  max-width: 700px;
+  margin: 60px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tool-details h2 {
+  margin-bottom: 15px;
+}
+
+.tool-details p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.buy-btn {
+  background: #1dbf73;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buy-btn:hover {
+  background: #17a563;
+}
+
+/* Dashboard */
+.dashboard {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.tool-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.tool-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.tool-form button {
+  background: #1dbf73;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tool-form button:hover {
+  background: #17a563;
+}
+
+/* Login Page */
+.login-page {
+  max-width: 400px;
+  margin: 100px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-form button {
+  background: #1dbf73;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background: #17a563;
+}
+/* src/styles/Register.css */
+
+.register {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.register h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1dbf73;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register input {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.register input:focus {
+  outline: none;
+  border-color: #1dbf73;
+}
+
+.register button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1dbf73;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.register button:hover {
+  background-color: #159b5c;
+}
+
+.register p {
+  margin-top: 15px;
+  text-align: center;
+  color: #ff4d4f; /* Error msg red */
+  font-weight: 500;
+}
