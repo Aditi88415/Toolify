@@ -30,7 +30,6 @@ A full-stack AI SaaS marketplace where users can explore, purchase, and use AI t
 - Backend: Node.js, Express
 - Database: MongoDB (Atlas)
 - Deployment: Netlify (frontend), Render (backend)
-- Authentication: Clerk (or JWT)
 - PDF Generation: pdfkit
 
 ---
