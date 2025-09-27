@@ -1,8 +1,14 @@
-// scripts/addResumeTool.js
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-// Replace with your actual MongoDB URI
-const MONGO_URI = "mongodb+srv://admin:admin123@cluster0.zfqqoub.mongodb.net/ai-saas?retryWrites=true&w=majority";
+dotenv.config(); // load environment variables
+
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  console.error("❌ MONGO_URI not found in .env");
+  process.exit(1);
+}
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -32,12 +38,12 @@ async function addResumeTool() {
     slug: "resume-generator",
     description: "Generate AI resumes quickly",
     category: "productivity",
-    url: "/resume", // React route
+    url: "/resume",
     isActive: true,
   });
 
   await resumeTool.save();
-  console.log("Resume Generator tool added successfully!");
+  console.log("✅ Resume Generator tool added successfully!");
   process.exit();
 }
 
