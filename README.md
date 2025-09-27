@@ -26,7 +26,7 @@ A full-stack AI SaaS marketplace where users can explore, purchase, and use AI t
 
 ## **Tech Stack**
 
-- Frontend: React, Vite, Tailwind CSS
+- Frontend: React, Vite,  CSS
 - Backend: Node.js, Express
 - Database: MongoDB (Atlas)
 - Deployment: Netlify (frontend), Render (backend)
