@@ -1,0 +1,339 @@
+/* --- Outer Wrapper (Center the Card) --- */
+.why-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fafae8;
+  padding: 100px 20px 60px;
+}
+
+/* --- Card Container --- */
+.why-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1e1e1e;
+  border-radius: 24px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  padding: 60px 80px;
+  max-width: 1100px;
+  width: 100%;
+  gap: 60px;
+  margin-bottom: 60px;
+  color: #fff;
+}
+
+/* --- Text Section --- */
+.why-text {
+  flex: 1;
+  min-width: 320px;
+  max-width: 520px;
+  color: #fff;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1dbf73;
+  margin-bottom: 12px;
+}
+
+.why-text h1 {
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.why-text h1 span {
+  font-weight: 800;
+  color: #1dbf73;
+}
+
+.why-text p {
+  font-size: 16px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.try-btn {
+  background-color: #111;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.try-btn:hover {
+  background-color: #1dbf73;
+}
+
+/* --- Video Section (Phone Preview) --- */
+.why-video-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-frame {
+  width: 300px;
+  height: 350px;
+  background: #000;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+.why-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Second Card Styling --- */
+.second-card {
+  margin-top: 40px;
+  background: #2b2b2b;
+  border-radius: 24px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  padding: 60px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  color: #fff;
+}
+
+/* --- Image inside second card --- */
+.why-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* --- Frame styling for image --- */
+.second-card .phone-frame {
+  width: 320px;
+  height: 280px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* --- AI Tools Showcase Cards --- */
+.ai-tools-showcase {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 28px;
+  margin: 60px auto;
+  flex-wrap: wrap;
+  max-width: 1100px;
+}
+
+/* Card container */
+.tool-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 320px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.tool-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.tool-card p {
+  color: #ffffff;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+/* --- Video preview area --- */
+.tool-preview {
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  position: relative;
+}
+
+.tool-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Optional dark overlay for text contrast */
+.tool-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* --- Different background colors for each card --- */
+.tool-card.vibe {
+  background-color: rgba(0, 77, 64, 0.8);
+}
+
+.tool-card.webdev {
+  background-color: rgba(0, 75, 35, 0.8);
+}
+
+.tool-card.video {
+  background-color: rgba(44, 0, 62, 0.8);
+}
+
+/* --- CTA Banner --- */
+.cta-section {
+  background: linear-gradient(90deg, #2f1b3a 0%, #4b0f28 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 56px 24px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 40px auto 120px;
+  box-shadow: 0 10px 40px rgba(75, 15, 40, 0.18);
+}
+
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.cta-text h2 {
+  font-size: 32px;
+  margin: 0 0 8px 0;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cta-text h2 span {
+  color: #f7b36b;
+}
+
+.cta-text p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+}
+
+/* --- CTA Buttons --- */
+.cta-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cta-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.22s ease;
+}
+
+.cta-ghost:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.cta-primary {
+  background: #fff;
+  color: #241023;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cta-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .why-card,
+  .second-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px 40px;
+  }
+
+  .phone-frame {
+    width: 200px;
+    height: 360px;
+  }
+
+  .second-card .phone-frame {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 20px;
+  }
+
+  .ai-tools-showcase {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-actions {
+    width: 100%;
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .cta-text h2 {
+    font-size: 24px;
+  }
+}

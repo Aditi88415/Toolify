@@ -1,5 +1,5 @@
 // src/pages/Home.jsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import HeroSection from "../components/HeroSection";
 import FeaturedTools from "../components/FeaturedTools";
@@ -8,13 +8,11 @@ import HowItWorks from "../components/HowItWorks";
 import CallToAction from "../components/CallToAction";
 
 export default function Home() {
-  const [q, setQ] = useState("");
   const [results, setResults] = useState([]);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  const handleSearch = async (query) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/tools?search=${q}`);
+      const res = await axios.get(`http://localhost:5000/api/tools?search=${query}`);
       setResults(res.data);
     } catch (err) {
       console.error("Search error:", err);
@@ -23,41 +21,10 @@ export default function Home() {
 
   return (
     <div>
-      <HeroSection />
+      {/* Hero section now handles the search bar */}
+      <HeroSection onSearch={handleSearch} />
 
-      {/* 🔍 Search Bar */}
-      <section style={{ textAlign: "center", margin: "40px 0" }}>
-        <form onSubmit={handleSearch}>
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search AI tools..."
-            style={{
-              padding: "12px 16px",
-              width: 420,
-              borderRadius: 30,
-              border: "1px solid #ccc",
-            }}
-          />
-          <button
-            type="submit"
-            style={{
-              marginLeft: 12,
-              padding: "11px 18px",
-              borderRadius: 30,
-              background: "#1dbf73",
-              color: "#fff",
-              border: "none",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            Search
-          </button>
-        </form>
-      </section>
-
-      {/* 🔎 Search Results */}
+      {/* Search results section */}
       {results.length > 0 && (
         <section style={{ padding: "20px 40px" }}>
           <h2>Search Results</h2>
