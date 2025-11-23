@@ -18,17 +18,19 @@ export default function Login() {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, form);
 
       const userData = res.data.user;
+      const token = res.data.token;
 
-      // Save user in localStorage
+      // Save token & user
+      localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(userData));
+
       setMsg("Login successful!");
 
-      // Redirect based on role
-      if (userData.role === "admin") {
-        navigate("/admin/dashboard");
-      } else {
-        navigate("/dashboard");
-      }
+      setTimeout(() => {
+        if (userData.role === "admin") navigate("/admin/dashboard");
+        else navigate("/dashboard");
+      }, 800);
+
     } catch (err) {
       setMsg(err.response?.data?.msg || "Login failed. Please try again.");
     }
@@ -36,15 +38,20 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <h2>Login</h2>
+      <h2>Welcome Back</h2>
+      <p style={{ textAlign: "center", color: "#737373", marginBottom: "32px", fontSize: "15px" }}>
+        Sign in to access your dashboard and tools
+      </p>
+
       <form onSubmit={handleSubmit} className="login-form">
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Email address"
           value={form.email}
           onChange={handleChange}
           required
+          className="form-input"
         />
         <input
           type="password"
@@ -53,10 +60,34 @@ export default function Login() {
           value={form.password}
           onChange={handleChange}
           required
+          className="form-input"
         />
         <button type="submit">Login</button>
       </form>
-      {msg && <p style={{ marginTop: "10px", color: msg.includes("successful") ? "green" : "red" }}>{msg}</p>}
+
+      {msg && (
+        <p
+          style={{
+            marginTop: "20px",
+            padding: "12px",
+            borderRadius: "8px",
+            textAlign: "center",
+            background: msg.includes("success") ? "#43e97b20" : "#ef444420",
+            color: msg.includes("success") ? "#059669" : "#dc2626",
+            fontSize: "14px",
+            fontWeight: "500",
+          }}
+        >
+          {msg}
+        </p>
+      )}
+
+      <p style={{ marginTop: "24px", textAlign: "center", color: "#737373", fontSize: "14px" }}>
+        Don't have an account?{" "}
+        <a href="/register" style={{ color: "#667eea", fontWeight: "600", textDecoration: "none" }}>
+          Sign up
+        </a>
+      </p>
     </div>
   );
 }

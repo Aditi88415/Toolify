@@ -1,44 +1,65 @@
 import express from "express";
 import Tool from "../models/Tool.js";
+import { authMiddleware, adminMiddleware } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// GET all tools (for admin)
-router.get("/tools", async (req, res) => {
+/* 📌 GET all tools */
+router.get("/tools", authMiddleware, adminMiddleware, async (req, res) => {
   try {
-    const tools = await Tool.find().sort({ createdAt: -1 });
+    const tools = await Tool.find()
+      .populate("submittedBy", "name email")
+      .sort({ createdAt: -1 });
+
     res.json(tools);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: err.message });
   }
 });
 
-// DELETE a tool
-router.delete("/tools/:id", async (req, res) => {
-  try {
-    const deleted = await Tool.findByIdAndDelete(req.params.id);
-    if (!deleted) return res.status(404).json({ error: "Tool not found" });
-    res.json({ message: "Tool deleted successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-// PATCH /tools/:id/approve -> approve a tool
-router.patch("/tools/:id/approve", async (req, res) => {
+/* ✔ Approve Tool */
+router.patch("/tools/:id/approve", authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const tool = await Tool.findById(req.params.id);
-    if (!tool) return res.status(404).json({ error: "Tool not found" });
+    if (!tool) return res.status(404).json({ message: "Tool not found" });
 
-    tool.isApproved = true;
+    tool.approved = true;
+    tool.status = "approved";
+    tool.notifications.push({ message: "Your tool has been approved ✔️" });
+
     await tool.save();
-
-    res.json({ message: "Tool approved successfully" });
+    res.json({ message: "Tool approved!", tool });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/* ❌ Reject Tool */
+router.patch("/tools/:id/reject", authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const tool = await Tool.findById(req.params.id);
+    if (!tool) return res.status(404).json({ message: "Tool not found" });
+
+    tool.approved = false;
+    tool.status = "rejected";
+    tool.notifications.push({ message: "Your tool was rejected ❌" });
+
+    await tool.save();
+    res.json({ message: "Tool rejected", tool });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+/* 🗑 Delete Tool (Admin Only) */
+router.delete("/tools/:id", authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const tool = await Tool.findById(req.params.id);
+    if (!tool) return res.status(404).json({ message: "Tool not found" });
+
+    await tool.deleteOne();
+    res.json({ message: "Tool deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

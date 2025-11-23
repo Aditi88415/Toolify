@@ -26,33 +26,69 @@ export default function Home() {
 
       {/* Search results section */}
       {results.length > 0 && (
-        <section style={{ padding: "20px 40px" }}>
-          <h2>Search Results</h2>
+        <section style={{ padding: "60px 40px", maxWidth: "1400px", margin: "0 auto" }}>
+          <h2
+            style={{
+              fontFamily: "'Syne', sans-serif",
+              fontSize: "2.5rem",
+              fontWeight: "700",
+              marginBottom: "40px",
+              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Search Results
+          </h2>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 20,
-              marginTop: 20,
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: 32,
             }}
           >
             {results.map((tool) => (
               <div
                 key={tool._id}
                 style={{
-                  border: "1px solid #ddd",
-                  borderRadius: 12,
-                  padding: 20,
-                  background: "#fff",
+                  border: "1px solid #e5e5e5",
+                  borderRadius: "20px",
+                  padding: "28px",
+                  background: "white",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow = "0 20px 40px rgba(0, 0, 0, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
                 }}
               >
-                <h3>{tool.name}</h3>
-                <p style={{ color: "#555" }}>{tool.description}</p>
-                <p>
-                  <strong>Category:</strong> {tool.category || "General"}
+                <h3
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                    marginBottom: "12px",
+                    color: "#171717",
+                  }}
+                >
+                  {tool.name}
+                </h3>
+                <p style={{ color: "#737373", fontSize: "14px", marginBottom: "12px", lineHeight: "1.6" }}>
+                  {tool.description}
                 </p>
-                <p>
-                  <strong>Price:</strong> ${tool.price || "Free"}
+                <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+                  <strong style={{ color: "#171717" }}>Category:</strong>{" "}
+                  <span style={{ color: "#667eea" }}>{tool.category || "General"}</span>
+                </p>
+                <p style={{ fontSize: "14px" }}>
+                  <strong style={{ color: "#171717" }}>Price:</strong>{" "}
+                  <span style={{ color: "#43e97b", fontWeight: "600" }}>${tool.price || "Free"}</span>
                 </p>
               </div>
             ))}

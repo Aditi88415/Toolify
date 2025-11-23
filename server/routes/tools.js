@@ -1,48 +1,71 @@
-// server/routes/tools.js
 import express from "express";
 import Tool from "../models/Tool.js";
+import { authMiddleware } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// Get tools with search
+/* ==========================================
+   ➤ POST: Add Tool (Requires Login)
+========================================== */
+router.post("/", authMiddleware, async (req, res) => {
+  try {
+    const { name, description, category, price, apiUrl } = req.body;
+
+    if (!name || !description) {
+      return res.status(400).json({ error: "Name and description are required" });
+    }
+
+    const tool = await Tool.create({
+      name,
+      description,
+      category,
+      price,
+      url: apiUrl || "",
+      approved: false,
+      submittedBy: req.user.id,
+    });
+
+    res.status(201).json({ message: "Tool submitted for approval", tool });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/* ==========================================
+   ➤ GET: Approved Tools For Public Tools Page
+   Supports search and filtering
+========================================== */
 router.get("/", async (req, res) => {
   try {
-    const search = req.query.search || "";
-    const query = search
-      ? {
-          $or: [
-            { name: { $regex: search, $options: "i" } },
-            { description: { $regex: search, $options: "i" } },
-            { category: { $regex: search, $options: "i" } }
-          ]
-        }
-      : {};
-    const tools = await Tool.find(query).sort({ createdAt: -1 });
+    const { search, approved } = req.query;
+    const query = {};
+
+    if (approved === "true") query.approved = true;
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const tools = await Tool.find(query)
+      .populate("submittedBy", "name email")
+      .sort({ createdAt: -1 });
+
     res.json(tools);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Add tool (user suggestion -> needs admin approval)
-router.post("/", async (req, res) => {
+/* ==========================================
+   ➤ GET: Tools Submitted by Logged-in User
+========================================== */
+router.get("/my", authMiddleware, async (req, res) => {
   try {
-    const { name, description, category, price } = req.body;
-
-    if (!name || !description) {
-      return res.status(400).json({ error: "Name and description are required" });
-    }
-
-    const tool = new Tool({
-      name,
-      description,
-      category,
-      price,
-      approved: false, // default false, admin must approve
-    });
-
-    await tool.save();
-    res.status(201).json({ message: "Tool suggestion submitted for approval", tool });
+    const tools = await Tool.find({ submittedBy: req.user.id }).sort({ createdAt: -1 });
+    res.json(tools);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
